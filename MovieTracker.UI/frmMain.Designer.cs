@@ -93,6 +93,7 @@
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "MovieTracker";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

@@ -107,6 +107,7 @@
             this.Controls.Add(this.cmdSearch);
             this.Controls.Add(this.txtTitleSearch);
             this.Controls.Add(this.lblMovieTitle);
+            this.MaximizeBox = false;
             this.Name = "frmSearchMovie";
             this.Text = "Search";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovieResults)).EndInit();

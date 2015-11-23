@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace MovieTracker.Model
@@ -24,7 +21,7 @@ namespace MovieTracker.Model
         public bool adult { get; set; }
 
         //public List<dynamic> belongs_to_collection { get; set; }
-        public List<dynamic> Genres { get; set; }
+        public List<MovieGenres> Genres { get; set; }
 
         public DateTime? release_date { get; set; }
         public long Revenue { get; set; }

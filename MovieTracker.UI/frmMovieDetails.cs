@@ -21,6 +21,7 @@ namespace MovieTracker.UI
 
         public string MoviePosterURL;
         public int movieID;
+        public List<MovieCast> cast;
 
 
         public frmMovieDetails()
@@ -38,7 +39,7 @@ namespace MovieTracker.UI
         private async Task getMovieDetails()
         {
             picMoviePoster.ImageLocation = MovieURLPrefix + "w500" + MoviePosterURL;
-            List<MovieCast> cast = new List<MovieCast>();
+            cast = new List<MovieCast>();
 
             API_INIT = new APIAccess();
 
