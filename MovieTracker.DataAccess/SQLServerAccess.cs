@@ -20,28 +20,29 @@ namespace MovieTracker.DataAccess
         {
             SqlDataReader dr = null;
             SqlCommand cmd = null;
+            bool isWatched;
             using (SqlConnection conn = new SqlConnection(InitString))
             {
-                cmd = new SqlCommand("SELECT MovieRating FROM movies WHERE MovieDBID='" + movieID + "'", conn);
+                cmd = new SqlCommand("SELECT id FROM movie_list WHERE id='" + movieID + "'", conn);
                 try
                 {
                     conn.Open();
 
                     dr = cmd.ExecuteReader();
-                    dr.Read();
+                    
+                    if (dr.Read())
+                    {
+                        isWatched = true;
+                    } else
+                    {
+                        isWatched = false;
+                    }
 
                     conn.Close();
                     dr.Close();
                     cmd.Dispose();
 
-                    if ((bool)dr["isWatched"])
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return isWatched;
                 } catch (SqlException sqe)
                 {
                     Console.Write(sqe.Message);
@@ -50,9 +51,9 @@ namespace MovieTracker.DataAccess
             }
         }
 
-        public List<WatchedMovieModel> getAllWatchedMovies()
+        public List<TmdbMovie> getAllWatchedMovies()
         {
-            List<WatchedMovieModel> watchedMovies = null;
+            List<TmdbMovie> watchedMovies = null;
 
             using (SqlConnection conn = new SqlConnection(InitString))
             {
@@ -71,7 +72,7 @@ namespace MovieTracker.DataAccess
                 return watchedMovies;
         }
 
-        public void watchMovie (int movieID, int movieRating)
+        public void watchMovie (TmdbMovie movie, List<MovieCast> cast, List<MovieGenres> genre, int rating)
         {
             using (SqlConnection conn = new SqlConnection(InitString))
             {

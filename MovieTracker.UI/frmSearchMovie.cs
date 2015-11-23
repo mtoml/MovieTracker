@@ -35,14 +35,9 @@ namespace MovieTracker.UI
             }
             List<MovieModel> movieTitles = new List<MovieModel>();
             API_INIT = new APIAccess();
-            //try
-            //{
+
             movieTitles = await API_INIT.SearchMovieTitle(txtTitleSearch.Text);
-            //} catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-            
+
             if (movieTitles != null)
             {
                 dgvMovieResults.DataSource = movieTitles;
@@ -79,27 +74,7 @@ namespace MovieTracker.UI
 
                 int selectedRowIndex = dgvMovieResults.CurrentCell.RowIndex;
                 movieDetails = await API_INIT.fullMovieDetails(Convert.ToInt32(dgvMovieResults.Rows[selectedRowIndex].Cells[0].Value));
-
-                movieDetailsForm.Controls["lblTitle"].Text = movieDetails.Title;
-                movieDetailsForm.Controls["lblTagLine"].Text = movieDetails.tagline;
-
-                movieDetailsForm.Controls["lblStatusActual"].Text = movieDetails.status;
-                if (movieDetails.status == "Released")
-                {
-                    movieDetailsForm.Controls["lblStatusActual"].ForeColor = Color.Green;
-                } else
-                {
-                    movieDetailsForm.Controls["lblStatusActual"].ForeColor = Color.Red;
-                }
-                movieDetailsForm.Controls["lblReleaseDateActual"].Text = movieDetails.release_date.ToString();
-                movieDetailsForm.Controls["lblRevenueActual"].Text = "$" + string.Format("{0:N}", movieDetails.Revenue);
-                movieDetailsForm.Controls["lblBudgetActual"].Text = "$" + string.Format("{0:N}", movieDetails.Budget);
-                movieDetailsForm.Controls["lblRuntimeActual"].Text = movieDetails.Runtime.ToString() + " mins";
-
-
-                movieDetailsForm.MoviePosterURL = movieDetails.poster_path;
-                movieDetailsForm.movieID = movieDetails.id;
-
+                movieDetailsForm.movie = movieDetails;
                 movieDetailsForm.Show();
             } else
             {

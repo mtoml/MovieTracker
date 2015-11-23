@@ -21,7 +21,10 @@ namespace MovieTracker.UI
 
         public string MoviePosterURL;
         public int movieID;
-        public List<MovieCast> cast;
+
+        public TmdbMovie movie;
+
+        private List<MovieCast> cast;
 
 
         public frmMovieDetails()
@@ -32,7 +35,30 @@ namespace MovieTracker.UI
         private async void frmMovieDetails_Load(object sender, EventArgs e)
         {
             lblLoading.Visible = true;
+            movieID = movie.id;
+            MoviePosterURL = movie.poster_path;
+
+            lblTitle.Text = movie.Title;
+            lblTagLine.Text = movie.tagline;
+
+            lblStatusActual.Text = movie.status;
+
+            if (movie.status == "Released")
+            {
+                lblStatusActual.ForeColor = Color.Green;
+            } else
+            {
+                lblStatusActual.ForeColor = Color.Red;
+            }
+
+            lblReleaseDateActual.Text = movie.release_date.ToString();
+            lblRevenueActual.Text = "$" + string.Format("{0:N}", movie.Revenue);
+            lblBudgetActual.Text = "$" + string.Format("{0:N}", movie.Budget);
+            lblRuntimeActual.Text = movie.Runtime.ToString() + " mins";
+
+
             await getMovieDetails();
+
             lblLoading.Visible = false;
         }
 
