@@ -61,20 +61,23 @@ namespace MovieTracker.UI
             Close();
         }
 
-        private async void cmdView_Click(object sender, EventArgs e)
+        private void cmdView_Click(object sender, EventArgs e)
         {
             if (dgvMovieResults.SelectedRows.Count == 1 )
             {
                 frmMovieDetails movieDetailsForm = new frmMovieDetails();
                 movieDetailsForm.MdiParent = this.MdiParent;
 
-                API_INIT = new APIAccess();
-                TmdbMovie movieDetails = null;
+                //API_INIT = new APIAccess();
+                //TmdbMovie movieDetails = null;
 
 
                 int selectedRowIndex = dgvMovieResults.CurrentCell.RowIndex;
-                movieDetails = await API_INIT.fullMovieDetails(Convert.ToInt32(dgvMovieResults.Rows[selectedRowIndex].Cells[0].Value));
-                movieDetailsForm.movie = movieDetails;
+
+                //movieDetails = await API_INIT.fullMovieDetails(Convert.ToInt32(dgvMovieResults.Rows[selectedRowIndex].Cells[0].Value));
+                //movieDetailsForm.movie = movieDetails;
+
+                movieDetailsForm.movieID = Convert.ToInt32(dgvMovieResults.Rows[selectedRowIndex].Cells[0].Value);
                 movieDetailsForm.Show();
             } else
             {

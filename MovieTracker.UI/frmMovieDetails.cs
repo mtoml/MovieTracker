@@ -15,17 +15,18 @@ namespace MovieTracker.UI
 {
     public partial class frmMovieDetails : Form
     {
-        APIAccess API_INIT;
+        //External data access
+        private APIAccess API_INIT;
+        private SQLServerAccess sqa;
 
+        private List<MovieCast> cast;
         private static string MovieURLPrefix = "http://image.tmdb.org/t/p/";
 
-        public string MoviePosterURL;
+        private string MoviePosterURL;
         public int movieID;
 
         public TmdbMovie movie;
-
-        private List<MovieCast> cast;
-
+        
 
         public frmMovieDetails()
         {
@@ -35,7 +36,18 @@ namespace MovieTracker.UI
         private async void frmMovieDetails_Load(object sender, EventArgs e)
         {
             lblLoading.Visible = true;
-            movieID = movie.id;
+
+            sqa = new SQLServerAccess();
+            if (sqa.checkIfWatched(movieID))
+            {
+                WatchedMovie movie = sqa.getWatchedMovie(movieID);
+                cmdWatched.Enabled = false;
+                cmdWatched.Text = "Watched";
+            } else
+            {
+                movie = await API_INIT.fullMovieDetails(movieID);
+            }
+
             MoviePosterURL = movie.poster_path;
 
             lblTitle.Text = movie.Title;
@@ -78,9 +90,29 @@ namespace MovieTracker.UI
             }
         }
 
+
         private void cmdWatched_Click(object sender, EventArgs e)
         {
+            int rating = 0;
+            if (chklbStarRating.CheckedItems.Count != 0)
+            {
+                foreach(char s in chklbStarRating.CheckedItems[0].ToString()) {
+                    rating++;
+                }
+            } else
+            {
+                MessageBox.Show("Please give a movie rating", "Error!");
+                return;
+            }
 
+            lblLoading.Visible = true;
+            lblLoading.Text = "SAVING";
+            sqa = new SQLServerAccess();
+
+            sqa.watchMovie(movie, cast, movie.Genres, rating);
+            cmdWatched.Enabled = false;
+            lblLoading.Visible = false;
+            lblLoading.Text = "LOADING";
         }
     }
 }
