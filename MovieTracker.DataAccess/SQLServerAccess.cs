@@ -52,8 +52,87 @@ namespace MovieTracker.DataAccess
             }
         }
 
+        public List<MovieCast> getMovieCast(int movieID)
+        {
+            List<MovieCast> cast_list = new List<MovieCast>();
+            MovieCast cast = null;
+            SqlDataReader dr = null;
+            SqlCommand cmd = null;
+
+            using (SqlConnection conn = new SqlConnection(InitString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    cmd = new SqlCommand("SELECT actor_name, character_name FROM movie_cast WHERE movie_id = '" + movieID +
+                        "' ORDER BY credit_order", conn);
+
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        cast = new MovieCast();
+                        cast.name = dr["actor_name"].ToString();
+                        cast.character = dr["character_name"].ToString();
+
+                        cast_list.Add(cast);
+                    }
+
+                    conn.Close();
+                    dr.Close();
+                    cmd.Dispose();
+
+                    return cast_list;
+                } catch (SqlException sqe) {
+                    Console.Write(sqe.Message);
+                    return null;
+                }
+            }
+        }
+
         public WatchedMovie getWatchedMovie(int movieID)
         {
+            WatchedMovie movie = new WatchedMovie(); ;
+            SqlDataReader dr = null;
+            SqlCommand cmd = null;
+
+            using (SqlConnection conn = new SqlConnection(InitString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    cmd = new SqlCommand("SELECT title, tagline, release_status, release_date, revenue, budget, runtime, poster_path, personal_rating FROM movie_list " +
+                        "WHERE id = " + movieID, conn);
+
+                    dr = cmd.ExecuteReader();
+
+                    if(dr.Read())
+                    {
+                        //movie.Title = dr.GetString(0);
+                        movie.Title = dr["title"].ToString();
+                        movie.tagline = dr["tagline"].ToString();
+                        movie.status = dr["release_status"].ToString();
+                        movie.release_date = (DateTime?)dr["release_date"];
+                        movie.Revenue = Convert.ToInt32(dr["revenue"]);
+                        movie.Budget = Convert.ToInt32(dr["budget"]);
+                        movie.Runtime = Convert.ToInt32(dr["runtime"]);
+                        movie.poster_path = dr["poster_path"].ToString();
+                        movie.personal_rating = Convert.ToInt32(dr["personal_rating"]);
+                    }
+
+                    conn.Close();
+                    dr.Close();
+                    cmd.Dispose();
+
+                    return movie;
+                } catch (SqlException sqe)
+                {
+                    Console.Write(sqe.Message);
+                    return null;
+                }
+            }
             return null;
         }
 

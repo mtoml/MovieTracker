@@ -23,9 +23,9 @@ namespace MovieTracker.UI
         private static string MovieURLPrefix = "http://image.tmdb.org/t/p/";
 
         private string MoviePosterURL;
-        public int movieID;
 
-        public TmdbMovie movie;
+        public int movieID;
+        public dynamic movie;
         
 
         public frmMovieDetails()
@@ -40,19 +40,25 @@ namespace MovieTracker.UI
             sqa = new SQLServerAccess();
             if (sqa.checkIfWatched(movieID))
             {
-                WatchedMovie movie = sqa.getWatchedMovie(movieID);
+                movie = new WatchedMovie();
+                movie = sqa.getWatchedMovie(movieID);
+                getMovieDetails(movieID);
                 cmdWatched.Enabled = false;
                 cmdWatched.Text = "Watched";
+                chklbStarRating.SetItemChecked(movie.personal_rating - 1, true);
             } else
             {
+                API_INIT = new APIAccess(); 
+                movie = new TmdbMovie();
                 movie = await API_INIT.fullMovieDetails(movieID);
+                await getMovieDetails();
             }
 
             MoviePosterURL = movie.poster_path;
 
             lblTitle.Text = movie.Title;
             lblTagLine.Text = movie.tagline;
-
+            
             lblStatusActual.Text = movie.status;
 
             if (movie.status == "Released")
@@ -68,15 +74,30 @@ namespace MovieTracker.UI
             lblBudgetActual.Text = "$" + string.Format("{0:N}", movie.Budget);
             lblRuntimeActual.Text = movie.Runtime.ToString() + " mins";
 
+            picMoviePoster.ImageLocation = MovieURLPrefix + "w500" + MoviePosterURL;
 
-            await getMovieDetails();
+            
 
             lblLoading.Visible = false;
         }
 
+        private void getMovieDetails(int movieID)
+        {
+            cast = new List<MovieCast>();
+            sqa = new SQLServerAccess();
+
+            cast = sqa.getMovieCast(this.movieID);
+
+            foreach (MovieCast m in cast)
+            {
+                string[] row = new string[] { m.name, m.character };
+                dgvMovieCredits.Rows.Add(row);
+            }
+        }
+
         private async Task getMovieDetails()
         {
-            picMoviePoster.ImageLocation = MovieURLPrefix + "w500" + MoviePosterURL;
+            
             cast = new List<MovieCast>();
 
             API_INIT = new APIAccess();
