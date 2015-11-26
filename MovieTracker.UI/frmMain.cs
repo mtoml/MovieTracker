@@ -31,5 +31,12 @@ namespace MovieTracker.UI
             searchForm.MdiParent = this;
             searchForm.Show();
         }
+
+        private void listAllWatchedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmWatchedMovies watchedMovieForm = new frmWatchedMovies();
+            watchedMovieForm.MdiParent = this;
+            watchedMovieForm.Show();
+        }
     }
 }

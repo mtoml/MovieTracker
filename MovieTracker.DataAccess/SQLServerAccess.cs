@@ -110,7 +110,6 @@ namespace MovieTracker.DataAccess
 
                     if(dr.Read())
                     {
-                        //movie.Title = dr.GetString(0);
                         movie.Title = dr["title"].ToString();
                         movie.tagline = dr["tagline"].ToString();
                         movie.status = dr["release_status"].ToString();
@@ -133,12 +132,14 @@ namespace MovieTracker.DataAccess
                     return null;
                 }
             }
-            return null;
         }
 
-        public List<TmdbMovie> getAllWatchedMovies()
+        public List<WatchedMovieModel> getAllWatchedMovies()
         {
-            List<TmdbMovie> watchedMovies = null;
+            List<WatchedMovieModel> watchedMovies = new List<WatchedMovieModel>();
+            WatchedMovieModel movie = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
 
             using (SqlConnection conn = new SqlConnection(InitString))
             {
@@ -146,15 +147,33 @@ namespace MovieTracker.DataAccess
                 {
                     conn.Open();
 
+                    cmd = new SqlCommand("select id, title, release_date, personal_rating from movie_list", conn);
+
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        movie = new WatchedMovieModel();
+
+                        movie.movieID = Convert.ToInt32(dr["id"]);
+                        movie.movieTitle = dr["title"].ToString();
+                        movie.movieReleaseDate = (DateTime?)dr["release_date"];
+                        movie.personal_rating = Convert.ToInt32(dr["personal_rating"]);
+
+                        watchedMovies.Add(movie);
+                    }
+
                     conn.Close();
+                    dr.Close();
+                    cmd.Dispose();
+
+                    return watchedMovies;
                 } catch (SqlException sqe)
                 {
                     Console.Write(sqe.Message);
+                    return null;
                 }
             }
-
-
-                return watchedMovies;
         }
 
         public void watchMovie (TmdbMovie movie, List<MovieCast> cast, List<MovieGenres> genre, int rating)

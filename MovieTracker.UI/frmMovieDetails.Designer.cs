@@ -32,6 +32,8 @@
             this.lblTagLine = new System.Windows.Forms.Label();
             this.picMoviePoster = new System.Windows.Forms.PictureBox();
             this.dgvMovieCredits = new System.Windows.Forms.DataGridView();
+            this.clmActor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCharacter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblReleaseDate = new System.Windows.Forms.Label();
             this.lblReleaseStatus = new System.Windows.Forms.Label();
             this.cmdWatched = new System.Windows.Forms.Button();
@@ -46,8 +48,6 @@
             this.lblBudgetActual = new System.Windows.Forms.Label();
             this.lblRuntimeActual = new System.Windows.Forms.Label();
             this.lblLoading = new System.Windows.Forms.Label();
-            this.clmActor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCharacter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.picMoviePoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovieCredits)).BeginInit();
             this.SuspendLayout();
@@ -102,6 +102,20 @@
             this.dgvMovieCredits.ReadOnly = true;
             this.dgvMovieCredits.Size = new System.Drawing.Size(411, 221);
             this.dgvMovieCredits.TabIndex = 4;
+            // 
+            // clmActor
+            // 
+            this.clmActor.HeaderText = "Actor";
+            this.clmActor.Name = "clmActor";
+            this.clmActor.ReadOnly = true;
+            this.clmActor.Width = 200;
+            // 
+            // clmCharacter
+            // 
+            this.clmCharacter.HeaderText = "Character";
+            this.clmCharacter.Name = "clmCharacter";
+            this.clmCharacter.ReadOnly = true;
+            this.clmCharacter.Width = 200;
             // 
             // lblReleaseDate
             // 
@@ -234,20 +248,6 @@
             this.lblLoading.Text = "LOADING";
             this.lblLoading.Visible = false;
             // 
-            // clmActor
-            // 
-            this.clmActor.HeaderText = "Actor";
-            this.clmActor.Name = "clmActor";
-            this.clmActor.ReadOnly = true;
-            this.clmActor.Width = 200;
-            // 
-            // clmCharacter
-            // 
-            this.clmCharacter.HeaderText = "Character";
-            this.clmCharacter.Name = "clmCharacter";
-            this.clmCharacter.ReadOnly = true;
-            this.clmCharacter.Width = 200;
-            // 
             // frmMovieDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +271,7 @@
             this.Controls.Add(this.picMoviePoster);
             this.Controls.Add(this.lblTagLine);
             this.Controls.Add(this.lblTitle);
+            this.MaximizeBox = false;
             this.Name = "frmMovieDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Movie Details";

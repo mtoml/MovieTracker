@@ -64,6 +64,12 @@
     <Compile Include="frmSearchMovie.Designer.cs">
       <DependentUpon>frmSearchMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWatchedMovies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWatchedMovies.Designer.cs">
+      <DependentUpon>frmWatchedMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchMovie.resx">
       <DependentUpon>frmSearchMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWatchedMovies.resx">
+      <DependentUpon>frmWatchedMovies.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
