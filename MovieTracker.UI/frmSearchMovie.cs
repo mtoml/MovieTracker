@@ -68,14 +68,7 @@ namespace MovieTracker.UI
                 frmMovieDetails movieDetailsForm = new frmMovieDetails();
                 movieDetailsForm.MdiParent = this.MdiParent;
 
-                //API_INIT = new APIAccess();
-                //TmdbMovie movieDetails = null;
-
-
                 int selectedRowIndex = dgvMovieResults.CurrentCell.RowIndex;
-
-                //movieDetails = await API_INIT.fullMovieDetails(Convert.ToInt32(dgvMovieResults.Rows[selectedRowIndex].Cells[0].Value));
-                //movieDetailsForm.movie = movieDetails;
 
                 movieDetailsForm.movieID = Convert.ToInt32(dgvMovieResults.Rows[selectedRowIndex].Cells[0].Value);
                 movieDetailsForm.Show();

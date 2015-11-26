@@ -20,7 +20,6 @@ namespace MovieTracker.Model
 
         public bool adult { get; set; }
 
-        //public List<dynamic> belongs_to_collection { get; set; }
         public List<MovieGenres> Genres { get; set; }
 
         public DateTime? release_date { get; set; }

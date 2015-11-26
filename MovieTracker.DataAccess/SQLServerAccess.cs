@@ -147,7 +147,8 @@ namespace MovieTracker.DataAccess
                 {
                     conn.Open();
 
-                    cmd = new SqlCommand("select id, title, release_date, personal_rating from movie_list", conn);
+                    cmd = new SqlCommand("select id, title, release_date, personal_rating from movie_list " +
+                        "ORDER BY title", conn);
 
                     dr = cmd.ExecuteReader();
 
