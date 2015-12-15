@@ -52,6 +52,36 @@ namespace MovieTracker.DataAccess
             }
         }
 
+        public MovieDirectors getMovieDirector(int movieID)
+        {
+            MovieDirectors director = null;
+            SqlDataReader dr = null;
+            SqlCommand cmd = null;
+
+            using (SqlConnection conn = new SqlConnection(InitString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    cmd = new SqlCommand("SELECT director_name FROM movie_directors WHERE movie_id = '" + movieID + "'", conn);
+
+                    dr = cmd.ExecuteReader();
+
+                    dr.Read();
+                    director = new MovieDirectors();
+                    director.director_name = dr["director_name"].ToString();
+
+
+                    return director;
+                } catch (SqlException sqe)
+                {
+                    Console.Write(sqe.Message);
+                    return null;
+                }
+            }
+        }
+
         public List<MovieCast> getMovieCast(int movieID)
         {
             List<MovieCast> cast_list = new List<MovieCast>();

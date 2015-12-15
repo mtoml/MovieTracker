@@ -39,7 +39,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(391, 200);
+            this.cmdCancel.Location = new System.Drawing.Point(493, 470);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 11;
@@ -50,7 +50,7 @@
             // cmdView
             // 
             this.cmdView.Enabled = false;
-            this.cmdView.Location = new System.Drawing.Point(12, 200);
+            this.cmdView.Location = new System.Drawing.Point(12, 470);
             this.cmdView.Name = "cmdView";
             this.cmdView.Size = new System.Drawing.Size(75, 23);
             this.cmdView.TabIndex = 10;
@@ -66,12 +66,12 @@
             this.dgvMovieResults.MultiSelect = false;
             this.dgvMovieResults.Name = "dgvMovieResults";
             this.dgvMovieResults.ReadOnly = true;
-            this.dgvMovieResults.Size = new System.Drawing.Size(454, 150);
+            this.dgvMovieResults.Size = new System.Drawing.Size(556, 420);
             this.dgvMovieResults.TabIndex = 9;
             // 
             // cmdQuery
             // 
-            this.cmdQuery.Location = new System.Drawing.Point(267, 6);
+            this.cmdQuery.Location = new System.Drawing.Point(335, 12);
             this.cmdQuery.Name = "cmdQuery";
             this.cmdQuery.Size = new System.Drawing.Size(147, 23);
             this.cmdQuery.TabIndex = 8;
@@ -83,7 +83,7 @@
             // 
             this.txtTitleSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTitleSearch.Enabled = false;
-            this.txtTitleSearch.Location = new System.Drawing.Point(108, 9);
+            this.txtTitleSearch.Location = new System.Drawing.Point(176, 15);
             this.txtTitleSearch.Name = "txtTitleSearch";
             this.txtTitleSearch.Size = new System.Drawing.Size(140, 20);
             this.txtTitleSearch.TabIndex = 7;
@@ -91,7 +91,7 @@
             // lblMovieTitle
             // 
             this.lblMovieTitle.AutoSize = true;
-            this.lblMovieTitle.Location = new System.Drawing.Point(35, 11);
+            this.lblMovieTitle.Location = new System.Drawing.Point(103, 17);
             this.lblMovieTitle.Name = "lblMovieTitle";
             this.lblMovieTitle.Size = new System.Drawing.Size(67, 13);
             this.lblMovieTitle.TabIndex = 6;
@@ -101,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 229);
+            this.ClientSize = new System.Drawing.Size(580, 505);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdView);
             this.Controls.Add(this.dgvMovieResults);

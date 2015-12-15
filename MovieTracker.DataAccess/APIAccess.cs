@@ -14,6 +14,39 @@ namespace MovieTracker.DataAccess
     {
         private static string APIKEY = "17c195f26ddf60ff8fd339f8091ddc7d";
 
+        public async Task<MovieDirectors> getMovieDirector(int id)
+        {
+            Uri baseAddress = new Uri("http://api.themoviedb.org/3/");
+            MovieDirectors director = new MovieDirectors();
+
+            using (HttpClient httpClient = new HttpClient { BaseAddress = baseAddress })
+            {
+                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+
+                using (HttpResponseMessage response = await httpClient.GetAsync("movie/" + id + "/credits?api_key=" + APIKEY))
+                {
+                    if (response.StatusCode == (HttpStatusCode)200)
+                    {
+                        string responseData = await response.Content.ReadAsStringAsync();
+                        dynamic res = JsonConvert.DeserializeObject(responseData);
+
+                        foreach (dynamic i in res["crew"])
+                        {
+                            if (i["job"] == "Director")
+                            {
+                                director.id = i["id"];
+                                director.director_name = i["name"];
+                            }
+                        }
+
+                        return director;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public async Task<List<MovieCast>> getMovieCredits(int id)
         {
             Uri baseAddress = new Uri("http://api.themoviedb.org/3/");

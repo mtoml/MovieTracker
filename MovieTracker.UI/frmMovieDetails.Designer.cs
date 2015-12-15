@@ -35,19 +35,21 @@
             this.clmActor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCharacter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblReleaseDate = new System.Windows.Forms.Label();
-            this.lblReleaseStatus = new System.Windows.Forms.Label();
+            this.lblDirector = new System.Windows.Forms.Label();
             this.cmdWatched = new System.Windows.Forms.Button();
             this.chklbStarRating = new System.Windows.Forms.CheckedListBox();
             this.lblRating = new System.Windows.Forms.Label();
             this.lblRevenue = new System.Windows.Forms.Label();
             this.lblBudget = new System.Windows.Forms.Label();
             this.lblRuntime = new System.Windows.Forms.Label();
-            this.lblStatusActual = new System.Windows.Forms.Label();
+            this.lblDirectorActual = new System.Windows.Forms.Label();
             this.lblReleaseDateActual = new System.Windows.Forms.Label();
             this.lblRevenueActual = new System.Windows.Forms.Label();
             this.lblBudgetActual = new System.Windows.Forms.Label();
             this.lblRuntimeActual = new System.Windows.Forms.Label();
             this.lblLoading = new System.Windows.Forms.Label();
+            this.lblStatusActual = new System.Windows.Forms.Label();
+            this.lblReleaseStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMoviePoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovieCredits)).BeginInit();
             this.SuspendLayout();
@@ -126,14 +128,14 @@
             this.lblReleaseDate.TabIndex = 5;
             this.lblReleaseDate.Text = "Release Date:";
             // 
-            // lblReleaseStatus
+            // lblDirector
             // 
-            this.lblReleaseStatus.AutoSize = true;
-            this.lblReleaseStatus.Location = new System.Drawing.Point(16, 163);
-            this.lblReleaseStatus.Name = "lblReleaseStatus";
-            this.lblReleaseStatus.Size = new System.Drawing.Size(40, 13);
-            this.lblReleaseStatus.TabIndex = 6;
-            this.lblReleaseStatus.Text = "Status:";
+            this.lblDirector.AutoSize = true;
+            this.lblDirector.Location = new System.Drawing.Point(16, 163);
+            this.lblDirector.Name = "lblDirector";
+            this.lblDirector.Size = new System.Drawing.Size(47, 13);
+            this.lblDirector.TabIndex = 6;
+            this.lblDirector.Text = "Director:";
             // 
             // cmdWatched
             // 
@@ -196,13 +198,13 @@
             this.lblRuntime.TabIndex = 12;
             this.lblRuntime.Text = "Runtime:";
             // 
-            // lblStatusActual
+            // lblDirectorActual
             // 
-            this.lblStatusActual.AutoSize = true;
-            this.lblStatusActual.Location = new System.Drawing.Point(115, 163);
-            this.lblStatusActual.Name = "lblStatusActual";
-            this.lblStatusActual.Size = new System.Drawing.Size(0, 13);
-            this.lblStatusActual.TabIndex = 13;
+            this.lblDirectorActual.AutoSize = true;
+            this.lblDirectorActual.Location = new System.Drawing.Point(115, 163);
+            this.lblDirectorActual.Name = "lblDirectorActual";
+            this.lblDirectorActual.Size = new System.Drawing.Size(0, 13);
+            this.lblDirectorActual.TabIndex = 13;
             // 
             // lblReleaseDateActual
             // 
@@ -248,24 +250,43 @@
             this.lblLoading.Text = "LOADING";
             this.lblLoading.Visible = false;
             // 
+            // lblStatusActual
+            // 
+            this.lblStatusActual.AutoSize = true;
+            this.lblStatusActual.Location = new System.Drawing.Point(115, 141);
+            this.lblStatusActual.Name = "lblStatusActual";
+            this.lblStatusActual.Size = new System.Drawing.Size(0, 13);
+            this.lblStatusActual.TabIndex = 21;
+            // 
+            // lblReleaseStatus
+            // 
+            this.lblReleaseStatus.AutoSize = true;
+            this.lblReleaseStatus.Location = new System.Drawing.Point(16, 141);
+            this.lblReleaseStatus.Name = "lblReleaseStatus";
+            this.lblReleaseStatus.Size = new System.Drawing.Size(40, 13);
+            this.lblReleaseStatus.TabIndex = 20;
+            this.lblReleaseStatus.Text = "Status:";
+            // 
             // frmMovieDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 517);
+            this.Controls.Add(this.lblStatusActual);
+            this.Controls.Add(this.lblReleaseStatus);
             this.Controls.Add(this.lblLoading);
             this.Controls.Add(this.lblRuntimeActual);
             this.Controls.Add(this.lblBudgetActual);
             this.Controls.Add(this.lblRevenueActual);
             this.Controls.Add(this.lblReleaseDateActual);
-            this.Controls.Add(this.lblStatusActual);
+            this.Controls.Add(this.lblDirectorActual);
             this.Controls.Add(this.lblRuntime);
             this.Controls.Add(this.lblRevenue);
             this.Controls.Add(this.lblBudget);
             this.Controls.Add(this.lblRating);
             this.Controls.Add(this.chklbStarRating);
             this.Controls.Add(this.cmdWatched);
-            this.Controls.Add(this.lblReleaseStatus);
+            this.Controls.Add(this.lblDirector);
             this.Controls.Add(this.lblReleaseDate);
             this.Controls.Add(this.dgvMovieCredits);
             this.Controls.Add(this.picMoviePoster);
@@ -289,14 +310,14 @@
         private System.Windows.Forms.PictureBox picMoviePoster;
         private System.Windows.Forms.DataGridView dgvMovieCredits;
         private System.Windows.Forms.Label lblReleaseDate;
-        private System.Windows.Forms.Label lblReleaseStatus;
+        private System.Windows.Forms.Label lblDirector;
         private System.Windows.Forms.Button cmdWatched;
         private System.Windows.Forms.CheckedListBox chklbStarRating;
         private System.Windows.Forms.Label lblRating;
         private System.Windows.Forms.Label lblRevenue;
         private System.Windows.Forms.Label lblBudget;
         private System.Windows.Forms.Label lblRuntime;
-        private System.Windows.Forms.Label lblStatusActual;
+        private System.Windows.Forms.Label lblDirectorActual;
         private System.Windows.Forms.Label lblReleaseDateActual;
         private System.Windows.Forms.Label lblRevenueActual;
         private System.Windows.Forms.Label lblBudgetActual;
@@ -304,5 +325,7 @@
         private System.Windows.Forms.Label lblLoading;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmActor;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCharacter;
+        private System.Windows.Forms.Label lblStatusActual;
+        private System.Windows.Forms.Label lblReleaseStatus;
     }
 }

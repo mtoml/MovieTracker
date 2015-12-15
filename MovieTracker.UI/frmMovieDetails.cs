@@ -20,6 +20,7 @@ namespace MovieTracker.UI
         private SQLServerAccess sqa;
 
         private List<MovieCast> cast;
+        private MovieDirectors director;
         private static string MovieURLPrefix = "http://image.tmdb.org/t/p/";
 
         private string MoviePosterURL;
@@ -58,8 +59,9 @@ namespace MovieTracker.UI
 
             lblTitle.Text = movie.Title;
             lblTagLine.Text = movie.tagline;
-            
+
             lblStatusActual.Text = movie.status;
+            lblDirectorActual.Text = director.director_name;
 
             if (movie.status == "Released")
             {
@@ -93,6 +95,8 @@ namespace MovieTracker.UI
                 string[] row = new string[] { m.name, m.character };
                 dgvMovieCredits.Rows.Add(row);
             }
+
+            director = sqa.getMovieDirector(this.movieID);
         }
 
         private async Task getMovieDetails()
@@ -109,6 +113,8 @@ namespace MovieTracker.UI
                 string[] row = new string[] { m.name, m.character };
                 dgvMovieCredits.Rows.Add(row);
             }
+
+            director = await API_INIT.getMovieDirector(movieID);
         }
 
 
