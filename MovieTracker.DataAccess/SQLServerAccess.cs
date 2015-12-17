@@ -207,7 +207,7 @@ namespace MovieTracker.DataAccess
             }
         }
 
-        public void watchMovie (TmdbMovie movie, List<MovieCast> cast, List<MovieGenres> genre, int rating)
+        public void watchMovie (TmdbMovie movie, List<MovieCast> cast, List<MovieGenres> genre, MovieDirectors director, int rating)
         {
             SqlCommand cmd = null;
             using (SqlConnection conn = new SqlConnection(InitString))
@@ -240,6 +240,10 @@ namespace MovieTracker.DataAccess
                     cmd.Parameters.AddWithValue("@budget", movie.Budget);
                     cmd.Parameters.AddWithValue("@runtime", movie.Runtime);
                     cmd.Parameters.AddWithValue("@rating", rating);
+
+                    //Director stuff
+                    cmd.Parameters.AddWithValue("@moviedirectorID", director.id);
+                    cmd.Parameters.AddWithValue("@moviedirector", director.director_name);
 
                     //Create datatable to pass for List<MovieCast>
                     DataTable dt = new DataTable("movie_cast_list");

@@ -136,7 +136,7 @@ namespace MovieTracker.UI
             lblLoading.Text = "SAVING";
             sqa = new SQLServerAccess();
 
-            sqa.watchMovie(movie, cast, movie.Genres, rating);
+            sqa.watchMovie(movie, cast, movie.Genres, director, rating);
             cmdWatched.Enabled = false;
             lblLoading.Visible = false;
             lblLoading.Text = "LOADING";

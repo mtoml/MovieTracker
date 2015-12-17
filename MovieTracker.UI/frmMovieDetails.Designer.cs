@@ -292,9 +292,10 @@
             this.Controls.Add(this.picMoviePoster);
             this.Controls.Add(this.lblTagLine);
             this.Controls.Add(this.lblTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "frmMovieDetails";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movie Details";
             this.Load += new System.EventHandler(this.frmMovieDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMoviePoster)).EndInit();
